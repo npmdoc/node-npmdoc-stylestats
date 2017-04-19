@@ -1,7 +1,7 @@
 <svg height="2510" width="720" xmlns="http://www.w3.org/2000/svg">
 <rect height="2510" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
-<tspan x="10" y="26">21 megabytes total</tspan>
+<tspan x="10" y="26">21 megabytes installed</tspan>
 <tspan x="10" y="42"></tspan>
 <tspan x="10" y="58">node_modules</tspan>
 <tspan x="10" y="74">└─┬ stylestats@7.0.1 </tspan>
@@ -24,7 +24,7 @@
 <tspan x="10" y="346">  │ ├─┬ htmlparser2@3.9.2 </tspan>
 <tspan x="10" y="362">  │ │ ├── domelementtype@1.3.0 </tspan>
 <tspan x="10" y="378">  │ │ ├── domhandler@2.3.0 </tspan>
-<tspan x="10" y="394">  │ │ └─┬ readable-stream@2.2.7 </tspan>
+<tspan x="10" y="394">  │ │ └─┬ readable-stream@2.2.9 </tspan>
 <tspan x="10" y="410">  │ │   ├── buffer-shims@1.0.0 </tspan>
 <tspan x="10" y="426">  │ │   ├── core-util-is@1.0.2 </tspan>
 <tspan x="10" y="442">  │ │   ├── isarray@1.0.0 </tspan>
@@ -74,7 +74,7 @@
 <tspan x="10" y="1146">  │ │ ├── minimist@0.0.10 </tspan>
 <tspan x="10" y="1162">  │ │ └── wordwrap@0.0.3 </tspan>
 <tspan x="10" y="1178">  │ ├── source-map@0.4.4 </tspan>
-<tspan x="10" y="1194">  │ └─┬ uglify-js@2.8.21 </tspan>
+<tspan x="10" y="1194">  │ └─┬ uglify-js@2.8.22 </tspan>
 <tspan x="10" y="1210">  │   ├── source-map@0.5.6 </tspan>
 <tspan x="10" y="1226">  │   ├── uglify-to-browserify@1.0.2 </tspan>
 <tspan x="10" y="1242">  │   └─┬ yargs@3.10.0 </tspan>
@@ -109,10 +109,10 @@
 <tspan x="10" y="1706">  │ │ └── delayed-stream@1.0.0 </tspan>
 <tspan x="10" y="1722">  │ ├── extend@3.0.0 </tspan>
 <tspan x="10" y="1738">  │ ├── forever-agent@0.6.1 </tspan>
-<tspan x="10" y="1754">  │ ├─┬ form-data@2.1.2 </tspan>
+<tspan x="10" y="1754">  │ ├─┬ form-data@2.1.4 </tspan>
 <tspan x="10" y="1770">  │ │ └── asynckit@0.4.0 </tspan>
 <tspan x="10" y="1786">  │ ├─┬ har-validator@4.2.1 </tspan>
-<tspan x="10" y="1802">  │ │ ├─┬ ajv@4.11.5 </tspan>
+<tspan x="10" y="1802">  │ │ ├─┬ ajv@4.11.7 </tspan>
 <tspan x="10" y="1818">  │ │ │ ├── co@4.6.0 </tspan>
 <tspan x="10" y="1834">  │ │ │ └─┬ json-stable-stringify@1.0.1 </tspan>
 <tspan x="10" y="1850">  │ │ │   └── jsonify@0.0.0 </tspan>
@@ -129,7 +129,7 @@
 <tspan x="10" y="2026">  │ │ │ ├── extsprintf@1.0.2 </tspan>
 <tspan x="10" y="2042">  │ │ │ ├── json-schema@0.2.3 </tspan>
 <tspan x="10" y="2058">  │ │ │ └── verror@1.3.6 </tspan>
-<tspan x="10" y="2074">  │ │ └─┬ sshpk@1.11.0 </tspan>
+<tspan x="10" y="2074">  │ │ └─┬ sshpk@1.13.0 </tspan>
 <tspan x="10" y="2090">  │ │   ├── asn1@0.2.3 </tspan>
 <tspan x="10" y="2106">  │ │   ├── assert-plus@1.0.0 </tspan>
 <tspan x="10" y="2122">  │ │   ├── bcrypt-pbkdf@1.0.1 </tspan>

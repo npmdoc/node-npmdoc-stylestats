@@ -56,6 +56,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.stylestats.stylestats">
+            function <span class="apidocSignatureSpan"></span>stylestats
+            <span class="apidocSignatureSpan">(args, config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">stylestats.</span>util</span>
 
         </li>
@@ -115,6 +124,114 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.stylestats" id="apidoc.module.stylestats">module stylestats</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.stylestats.stylestats" id="apidoc.element.stylestats.stylestats">
+        function <span class="apidocSignatureSpan"></span>stylestats
+        <span class="apidocSignatureSpan">(args, config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class StyleStats {
+<span class="apidocCodeCommentSpan">  /**
+   * @param {Array} args
+   * @param {String|Object} config
+   */
+</span>  constructor(args, config) {
+    args = Array.isArray(args) ? args : [args];
+    this.urls = [];
+    this.files = [];
+    this.styles = [];
+    const EXTENSIONS = ['.css'];
+
+    // Check arguments which is url or file path or other
+    args.forEach(arg =&gt; {
+      if (util.isFile(arg) &amp;&amp; EXTENSIONS.indexOf(path.extname(arg)) !== -1) {
+        this.files.push(arg);
+      } else if (util.isDirectory(arg)) {
+        fs.readdirSync(arg).filter(file =&gt; {
+          return (EXTENSIONS.indexOf(path.extname(file)) !== -1);
+        }).forEach(file =&gt; {
+          this.files.push(arg + file);
+        });
+      } else if (validUrl.isUri(arg)) {
+        this.urls.push(arg);
+      } else if (util.isCSS(arg)) {
+        this.styles.push(arg);
+      } else {
+        glob.sync(arg).filter(file =&gt; {
+          return (path.extname(file) === '.css');
+        }).forEach(file =&gt; {
+          this.files.push(file);
+        });
+      }
+    });
+
+    const defaultOptions = require('../assets/default.json');
+    let customOptions = {};
+    if (config &amp;&amp; util.isFile(config)) {
+      const configString = fs.readFileSync(config, {
+        encoding: 'utf8'
+      });
+      try {
+        customOptions = JSON.parse(configString);
+      } catch (err) {
+        throw err;
+      }
+    } else if (util.isObject(config)) {
+      customOptions = config;
+    }
+
+    this.options = Object.assign({}, defaultOptions, customOptions);
+    this.parser = new Parser(this.urls, this.files, this.styles, this.options);
+  }
+
+  /**
+   * Parse CSS
+   * @returns {Promise}
+   */
+  parse() {
+    return new Promise((resolve, reject) =&gt; {
+      this.parser.parse().then(data =&gt; {
+        const analyzedData = new Analyzer(data, this.options).analyze();
+
+        const stats = {};
+        if (this.options.published) {
+          stats.published = new Date();
+        }
+        if (this.options.paths) {
+          stats.paths = [];
+          Array.prototype.push.apply(stats.paths, this.files);
+          Array.prototype.push.apply(stats.paths, this.urls);
+        }
+        if (this.options.stylesheets) {
+          stats.stylesheets = this.files.length + data.cssFiles - 0;
+        }
+        if (this.options.styleElements) {
+          stats.styleElements = data.styleElements;
+        }
+        Object.assign(stats, analyzedData);
+        if (this.options.mediaQueries) {
+          stats.mediaQueries = data.mediaQueries;
+        }
+        resolve(stats);
+      }).catch(err =&gt; reject(err));
+    });
+  }
+
+  /**
+   * Prettify CSS
+   * @param {Object} stats
+   * @returns {Object}
+   */
+  prettify(stats) {
+    return prettify(stats);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
 
@@ -209,21 +326,21 @@ isDirectory: dir =&gt; {
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-/**
- * Argument is file path or not
- * @param {String} file
- * @returns {Boolean}
- */
-isFile: file =&gt; {
-  try {
-    return fs.existsSync(file) &amp;&amp; fs.statSync(file).<span class="apidocCodeKeywordSpan">isFile</span>();
-  } catch (err) {
-    return false;
-  }
-},
-/**
- * Argument is directory path or not
- * @param {String} dir
+
+if (program.mobile) {
+config.requestOptions.headers['User-Agent'] = MOBILE_UA;
+}
+if (program.number) {
+Object.assign(config, numberConfig);
+}
+if (program.config &amp;&amp; util.<span class="apidocCodeKeywordSpan">isFile</span>(program.config)) {
+const configString = fs.readFileSync(program.config, {
+  encoding: 'utf8'
+});
+try {
+  userConfig = JSON.parse(configString);
+} catch (err) {
+  throw err;
 ...</pre></li>
     </ul>
 
@@ -255,7 +372,23 @@ isFile: file =&gt; {
   const type = typeof obj;
   return type === 'function' || ((type === 'object') &amp;&amp; Boolean(obj));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    encoding: 'utf8'
+  });
+  try {
+    userConfig = JSON.parse(configString);
+  } catch (err) {
+    throw err;
+  }
+} else if (util.<span class="apidocCodeKeywordSpan">isObject</span>(program.config)) {
+  userConfig = config;
+}
+Object.assign(config, userConfig);
+
+// Parse
+const stats = new StyleStats(program.args, config);
+stats.parse()
+...</pre></li>
     </ul>
 
 
