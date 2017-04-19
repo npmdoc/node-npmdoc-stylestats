@@ -1,9 +1,14 @@
-# api documentation for  [stylestats (v7.0.1)](http://www.stylestats.org)  [![npm package](https://img.shields.io/npm/v/npmdoc-stylestats.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-stylestats) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-stylestats.svg)](https://travis-ci.org/npmdoc/node-npmdoc-stylestats)
+# npmdoc-stylestats
+
+#### api documentation for  [stylestats (v7.0.1)](http://www.stylestats.org)  [![npm package](https://img.shields.io/npm/v/npmdoc-stylestats.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-stylestats) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-stylestats.svg)](https://travis-ci.org/npmdoc/node-npmdoc-stylestats)
+
 #### StyleStats is a small library to collect CSS statistics!
 
-[![NPM](https://nodei.co/npm/stylestats.png?downloads=true)](https://www.npmjs.com/package/stylestats)
+[![NPM](https://nodei.co/npm/stylestats.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/stylestats)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-stylestats/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-stylestats_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-stylestats/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-stylestats/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-stylestats/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-stylestats/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-stylestats/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-stylestats/build/screenCapture.npmPackageListing.svg)
 
@@ -17,8 +22,7 @@
 
 {
     "author": {
-        "name": "Koji Ishimoto",
-        "email": "ijok.ijok@gmail.com"
+        "name": "Koji Ishimoto"
     },
     "ava": {
         "require": [
@@ -47,8 +51,7 @@
     },
     "contributors": [
         {
-            "name": "1000ch",
-            "email": "shogo.sensui@gmail.com"
+            "name": "1000ch"
         }
     ],
     "dependencies": {
@@ -101,17 +104,14 @@
     "main": "lib/stylestats.js",
     "maintainers": [
         {
-            "name": "t32k",
-            "email": "ijok.ijok@gmail.com"
+            "name": "t32k"
         },
         {
-            "name": "1000ch",
-            "email": "shogo.sensui@gmail.com"
+            "name": "1000ch"
         }
     ],
     "name": "stylestats",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git+ssh://git@github.com/t32k/stylestats.git"
@@ -127,149 +127,6 @@
         "esnext": true
     }
 }
-```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module stylestats](#apidoc.module.stylestats)
-1.  object <span class="apidocSignatureSpan">stylestats.</span>util
-
-#### [module stylestats.util](#apidoc.module.stylestats.util)
-1.  [function <span class="apidocSignatureSpan">stylestats.util.</span>isCSS (str)](#apidoc.element.stylestats.util.isCSS)
-1.  [function <span class="apidocSignatureSpan">stylestats.util.</span>isDirectory (dir)](#apidoc.element.stylestats.util.isDirectory)
-1.  [function <span class="apidocSignatureSpan">stylestats.util.</span>isFile (file)](#apidoc.element.stylestats.util.isFile)
-1.  [function <span class="apidocSignatureSpan">stylestats.util.</span>isFunction {{signature}}](#apidoc.element.stylestats.util.isFunction)
-1.  [function <span class="apidocSignatureSpan">stylestats.util.</span>isObject ((type === 'object')](#apidoc.element.stylestats.util.isObject)
-
-
-
-# <a name="apidoc.module.stylestats"></a>[module stylestats](#apidoc.module.stylestats)
-
-
-
-# <a name="apidoc.module.stylestats.util"></a>[module stylestats.util](#apidoc.module.stylestats.util)
-
-#### <a name="apidoc.element.stylestats.util.isCSS"></a>[function <span class="apidocSignatureSpan">stylestats.util.</span>isCSS (str)](#apidoc.element.stylestats.util.isCSS)
-- description and source-code
-```javascript
-str => {
-  try {
-    return css.parse(str) instanceof Object;
-  } catch (err) {
-    return false;
-  }
-}
-```
-- example usage
-```shell
-...
-  throw new Error('Argument is invalid');
-}
-
-// Requests to stylesheet defined in html
-const requestPromisesInner = [];
-
-results.forEach(result => {
-  if (util.isCSS(result)) {
-    that.styles.push(result);
-  } else {
-    // Push remote css data
-    const type = result.headers['content-type'];
-    if (type.indexOf('html') > -1) {
-      // Parse result body
-      const $ = cheerio.load(result.body);
-...
-```
-
-#### <a name="apidoc.element.stylestats.util.isDirectory"></a>[function <span class="apidocSignatureSpan">stylestats.util.</span>isDirectory (dir)](#apidoc.element.stylestats.util.isDirectory)
-- description and source-code
-```javascript
-dir => {
-  try {
-    return fs.existsSync(dir) && fs.statSync(dir).isDirectory();
-  } catch (err) {
-    return false;
-  }
-}
-```
-- example usage
-```shell
-...
-/**
- * Argument is directory path or not
- * @param {String} dir
- * @returns {Boolean}
- */
-isDirectory: dir => {
-  try {
-    return fs.existsSync(dir) && fs.statSync(dir).isDirectory();
-  } catch (err) {
-    return false;
-  }
-},
-/**
- * Argument is CSS or not
- * @param {String} str
-...
-```
-
-#### <a name="apidoc.element.stylestats.util.isFile"></a>[function <span class="apidocSignatureSpan">stylestats.util.</span>isFile (file)](#apidoc.element.stylestats.util.isFile)
-- description and source-code
-```javascript
-file => {
-  try {
-    return fs.existsSync(file) && fs.statSync(file).isFile();
-  } catch (err) {
-    return false;
-  }
-}
-```
-- example usage
-```shell
-...
-/**
- * Argument is file path or not
- * @param {String} file
- * @returns {Boolean}
- */
-isFile: file => {
-  try {
-    return fs.existsSync(file) && fs.statSync(file).isFile();
-  } catch (err) {
-    return false;
-  }
-},
-/**
- * Argument is directory path or not
- * @param {String} dir
-...
-```
-
-#### <a name="apidoc.element.stylestats.util.isFunction"></a>[function <span class="apidocSignatureSpan">stylestats.util.</span>isFunction {{signature}}](#apidoc.element.stylestats.util.isFunction)
-- description and source-code
-```javascript
-fn => {
-  return typeof fn === 'function' || false;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.stylestats.util.isObject"></a>[function <span class="apidocSignatureSpan">stylestats.util.</span>isObject ((type === 'object')](#apidoc.element.stylestats.util.isObject)
-- description and source-code
-```javascript
-obj => {
-  const type = typeof obj;
-  return type === 'function' || ((type === 'object') && Boolean(obj));
-}
-```
-- example usage
-```shell
-n/a
 ```
 
 
